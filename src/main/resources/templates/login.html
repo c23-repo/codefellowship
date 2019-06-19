@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Login to Code Fellowship</title>
@@ -8,13 +8,11 @@
     <h1> Log in</h1>
 
     <form action="/login" method="POST">
-        <input name="username">
-        <input name="password">
-        <input name="firstName">
-        <input name="lastName">
-        <input text="dateOfBirth">
-        <input text="bio">
+        <input type="text" name="username" id="username" placeholder="User Name" required><br>
+        <input type="text" name="password" id="password" placeholder="Password" required><br><br>
+
         <input type="submit">
     </form>
+    <a th:href="@{signup}">First time? Create an account!</a>
 </body>
 </html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+    <h1>Code Fellowship Members</h1>
+    <ul>
+        <li th:each="user : ${allusers}">
+            Username: <span th:text="${user.username}"></span><br>
+            <a th:href="@{'/details/' + ${user.id}}">Details</a>
+        </li>
+    </ul>
+</body>
+</html>

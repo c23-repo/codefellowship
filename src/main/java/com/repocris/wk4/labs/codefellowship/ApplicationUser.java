@@ -15,7 +15,7 @@ import java.util.Collection;
 public class ApplicationUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
     String username;
@@ -45,12 +45,12 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     @Override
@@ -72,6 +72,8 @@ public class ApplicationUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public long getId() { return id; }
 
     public String getFirstName() {
         return firstName;
