@@ -27,6 +27,13 @@ public class ApplicationUserController {
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    PostRepository postRepository;
+
+    @GetMapping("/")
+    public String getCodeFellowship() {
+        return "codefellowship";
+    }
 
     @GetMapping("/signup")
     public String signupPage(){
@@ -58,19 +65,45 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/allusers")
-    public String getAllUsers(Model model){
+    public String getAllUsers(Model model, Principal principal){
         Iterable<ApplicationUser> allUsers = applicationUserRepository.findAll();
         model.addAttribute("allusers", allUsers);
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+        model.addAttribute("loggedInUser", loggedInUser);
         return "allusers";
     }
 
     @GetMapping("/details/{id}")
-    public String getUserDetails(@PathVariable Long id, Model model){
+    public String getUserDetails(@PathVariable Long id, Model model, Principal principal){
         ApplicationUser allUsers = applicationUserRepository.findById(id).get();
         model.addAttribute("allusers", allUsers);
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+        model.addAttribute("loggedInUser", loggedInUser);
         return "details";
     }
 
+    @PostMapping("/create/post")
+    public RedirectView createPost(String body, Principal principal){
+        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+        Post post = new Post(body, user);
+        postRepository.save(post);
+        return new RedirectView("/userprofile");
+    }
 
+    @PostMapping("/follow/{id}")
+    public RedirectView createFriendship(@PathVariable Long id, Principal principal, Model model){
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+        ApplicationUser newFriend = applicationUserRepository.findById(id).get();
+        loggedInUser.friends.add(newFriend);
+        applicationUserRepository.save(loggedInUser);
+        return new RedirectView("/userprofile");
+    }
+
+    @GetMapping("/feed")
+    public String seeFriendsPosts(Model model, Principal principal){
+        ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        return "/feed";
+    }
 
 }

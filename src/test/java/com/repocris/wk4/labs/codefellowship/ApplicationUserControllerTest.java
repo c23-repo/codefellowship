@@ -34,17 +34,17 @@ public class ApplicationUserControllerTest {
     }
 
     @Test
-    public void testRequestToHelloGivesHello() throws Exception{
+    public void testCodeFellowshipString() throws Exception{
         mockMvc.perform(get("/")).andExpect(content().string(containsString("Code Fellowship")));
     }
 
     @Test
-    public void testRequestToCapitalizeWord() throws Exception{
+    public void testLoginString() throws Exception{
         mockMvc.perform(get("/login")).andExpect(content().string(containsString("Login")));
     }
 
     @Test
-    public void testRequestToReverse() throws Exception{
+    public void testSignUpString() throws Exception{
         mockMvc.perform(get("/signup")).andExpect(content().string(containsString("Sign Up")));
     }
 

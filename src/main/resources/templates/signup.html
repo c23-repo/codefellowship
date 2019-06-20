@@ -2,10 +2,14 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+              integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
         <title>Sign Up</title>
     </head>
     <body>
-        <h1>Create an account</h1>
+    <div th:replace="header :: headerFragment" class="pure-menu pure-menu-horizontal"></div>
+    <h1>Create an account</h1>
         <form action="/signup" method="POST">
             <input type="text" name="username" placeholder="User Name" id="username" required><br>
             <input type="text" name="password" placeholder="Password" id="password" required><br>

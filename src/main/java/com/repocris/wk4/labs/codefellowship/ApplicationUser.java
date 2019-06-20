@@ -4,11 +4,10 @@ import javassist.compiler.ast.StringL;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -18,12 +17,21 @@ public class ApplicationUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
+    @Column(unique = true)
     String username;
     String password;
     String firstName;
     String lastName;
     String dateOfBirth;
     String bio;
+
+
+    // DB relationship annotation
+    @OneToMany(mappedBy = "creator")
+    List<Post> posts;
+
+    @ManyToMany
+    Set<ApplicationUser> friends;
 
     public ApplicationUser(){}
 
@@ -89,5 +97,13 @@ public class ApplicationUser implements UserDetails {
 
     public String getBio() {
         return bio;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public Set<ApplicationUser> getFriends() {
+        return friends;
     }
 }

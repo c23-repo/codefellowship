@@ -1,7 +1,5 @@
-package com.repocris.wk4.labs.codefellowship;// TODO: put your package name here
+package com.repocris.wk4.labs.codefellowship;
 
-// TODO: make this import match your package structure
-// import com.ferreirae.securedemo.appuser.UserDetailsServiceImpl;
 import com.repocris.wk4.labs.codefellowship.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

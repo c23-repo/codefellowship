@@ -2,20 +2,22 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
+            <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
+            <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+              integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
         <title>Details</title>
     </head>
     <body>
-    <h1>User Details</h1>
+        <div th:replace="header :: headerFragment" class="pure-menu pure-menu-horizontal"></div>
+        <h1>Welcome to the Fellowship <span th:text="${loggedInUser.username}"></span>!</h1>
         <ul>
-            <ul>
-                <li th:each="user : ${users}">
-                    Username: <span th:text="${user.username}"></span><br>
-                    First Name: <span th:text="${user.firstName}"></span><br>
-                    Last Name: <span th:text="${user.lastName}"></span><br>
-                    Date of Birth: <span th:text="${user.dateOfBirth}"></span><br>
-                    Bio: <span th:text="${user.bio}"></span><br>
-                </li>
-            </ul>
+            <li th:each="user : ${allusers}">
+                Username: <span th:text="${user.username}"></span><br>
+                First Name: <span th:text="${user.firstName}"></span><br>
+                Last Name: <span th:text="${user.lastName}"></span><br>
+                Date of Birth: <span th:text="${user.dateOfBirth}"></span><br>
+                Bio: <span th:text="${user.bio}"></span><br>
+            </li>
         </ul>
     </body>
 </html>
