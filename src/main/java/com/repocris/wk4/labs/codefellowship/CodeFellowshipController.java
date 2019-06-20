@@ -10,10 +10,10 @@ import java.security.Principal;
 @Controller
 public class CodeFellowshipController {
 
-    @GetMapping("/")
-    public String getCodeFellowship(Principal p, Model m) {
-        System.out.println(p.getName());
-        m.addAttribute("principal", p);
-        return "codefellowship";
-    }
+//    @GetMapping("/codefellowship")
+//    public String getCodeFellowship(Principal p, Model m) {
+//        System.out.println(p.getName());
+//        m.addAttribute("principal", p);
+//        return "codefellowship";
+//    }
 }
