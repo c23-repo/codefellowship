@@ -8,10 +8,10 @@
         <title>Message Center</title>
     </head>
     <body>
-    <div th:replace="header :: headerFragment" class="pure-menu pure-menu-horizontal"></div>
+    <div th:replace="header :: headerFragment"></div>
         <h1>Message Center</h1>
-        <fieldset th:each="person : ${person.username}">
-            <legend th:text="${person.posts}"></legend>
+        <fieldset th:each="person : ${user.friends}">
+            <legend><a th:href="@{'/details/' + ${person.id}}"><span th:text="${person.username}"></span></a> </legend>
             <ul>
                 <li th:each="post : ${person.posts}"><span th:text="${post.body}"></span></li>
             </ul>

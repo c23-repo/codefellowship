@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -66,10 +67,10 @@ public class ApplicationUserController {
 
     @GetMapping("/allusers")
     public String getAllUsers(Model model, Principal principal){
-        Iterable<ApplicationUser> allUsers = applicationUserRepository.findAll();
-        model.addAttribute("allusers", allUsers);
         ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
         model.addAttribute("loggedInUser", loggedInUser);
+        Iterable<ApplicationUser> friendable = applicationUserRepository.findAll();
+        model.addAttribute("friendable", friendable);
         return "allusers";
     }
 
@@ -82,12 +83,19 @@ public class ApplicationUserController {
         return "details";
     }
 
-    @PostMapping("/create/post")
-    public RedirectView createPost(String body, Principal principal){
+    @GetMapping("/createpost")
+    public String createPost(Model model, Principal principal){
+        ApplicationUser loggedInUser = applicationUserRepository.findByUsername(principal.getName());
+        model.addAttribute("loggedInUser", loggedInUser);
+        return "createpost";
+    }
+
+    @PostMapping("/createpost")
+    public RedirectView displayPost(String body, Principal principal){
         ApplicationUser user = applicationUserRepository.findByUsername(principal.getName());
         Post post = new Post(body, user);
         postRepository.save(post);
-        return new RedirectView("/userprofile");
+        return new RedirectView("/feed");
     }
 
     @PostMapping("/follow/{id}")

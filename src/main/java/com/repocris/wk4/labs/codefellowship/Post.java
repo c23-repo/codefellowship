@@ -1,12 +1,7 @@
 package com.repocris.wk4.labs.codefellowship;
 
 
-import com.sun.tools.javah.Gen;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +14,7 @@ public class Post {
     LocalDateTime createdAt;
 
     // DB relationship annotation
+    @ManyToOne
     ApplicationUser creator;
 
 

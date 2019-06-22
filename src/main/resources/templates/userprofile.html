@@ -12,6 +12,15 @@
 
         <h1>Welcome <span th:text="${user.username}"></span></h1><br><br>
 
+            <h3>Posts</h3>
+            <ul>
+                <li th:each="potato : ${user.posts}"><span th:text="${potato.body}"></span></li>
+            </ul>
+
+            <h3>Friends</h3>
+            <ul>
+                <li th:each="tomato : ${user.friends}"><a th:href="@{'/details/' + ${tomato.id}}"><span th:text="${tomato.username}"></span></a></li>
+            </ul>
         <h3><a th:href="@{/logout}">Logout</a></h3>
     </body>
 </html>

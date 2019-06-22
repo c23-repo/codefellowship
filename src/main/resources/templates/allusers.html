@@ -11,9 +11,12 @@
     <div th:replace="header :: headerFragment" class="pure-menu pure-menu-horizontal"></div>
         <h1>Code Fellowship Members</h1>
         <ul>
-            <li th:each="user : ${allusers}">
+            <li th:each="user : ${friendable}">
                 Username: <span th:text="${user.username}"></span><br>
                 <a th:href="@{'/details/' + ${user.id}}">Details</a>
+                <div th:if="${user != loggedInUser && !(loggedInUser.friends.contains(user))}">
+                <form th:action="'/follow/' + ${user.id}" method="post"><input type="submit" value="Follow"></input></form>
+                </div>
             </li>
         </ul>
     </body>
