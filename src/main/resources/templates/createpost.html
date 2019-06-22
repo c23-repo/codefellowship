@@ -10,8 +10,8 @@
     <body>
         <div th:replace="header :: headerFragment" class="pure-menu pure-menu-horizontal"></div>
         <h1><span th:text="${loggedInUser.username}"}></span> says: </h1>
-        <form action="/create/post" method="POST">
-            <input type="text" name="body" id="body" placeholder="Type here" required>
+        <form action="/createpost" method="POST">
+            <input type="text" name="body" id="body" placeholder="Your message here" required>
             <input type="submit">
         </form>
     </body>
